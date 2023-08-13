@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gas Service App</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'gas_service/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Gas Service App</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'gas_service:submit_request' %}">Submit Request</a></li>
+                <li><a href="{% url 'gas_service:track_requests' %}">Track Requests</a></li>
+                {% for request in requests %}
+                    <li><a href="{% url 'gas_service:service_request_detail' request.pk %}">Request {{ request.pk }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; {{ year }} Gas Service App</p>
+    </footer>
+</body>
+</html>

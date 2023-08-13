@@ -1,0 +1,14 @@
+<!-- templates/gas_service/service_request_detail.html -->
+{% extends 'gas_service/base.html' %}
+
+{% block content %}
+  <h2>Service Request Detail</h2>
+  <p>Status: {% if request_obj.resolved %}Resolved{% else %}Pending{% endif %}</p>
+  <p>Service Type: {{ request_obj.get_service_type_display }}</p>
+  <!-- ... other details ... -->
+  
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" name="mark_resolved">Mark as Resolved</button>
+  </form>
+{% endblock %}
